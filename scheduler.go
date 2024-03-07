@@ -5,11 +5,11 @@ import (
 	"context"
 	"reflect"
 	"runtime"
+	"slices"
 	"time"
 
 	"github.com/google/uuid"
 	"github.com/jonboulle/clockwork"
-	"golang.org/x/exp/slices"
 )
 
 var _ Scheduler = (*scheduler)(nil)

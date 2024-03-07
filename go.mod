@@ -8,7 +8,6 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/goleak v1.3.0
-	golang.org/x/exp v0.0.0-20231219180239-dc181d75b848
 )
 
 require (

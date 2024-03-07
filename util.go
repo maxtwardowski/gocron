@@ -3,12 +3,11 @@ package gocron
 import (
 	"context"
 	"reflect"
+	"slices"
 	"sync"
 	"time"
 
 	"github.com/google/uuid"
-	"golang.org/x/exp/maps"
-	"golang.org/x/exp/slices"
 )
 
 func callJobFuncWithParams(jobFunc any, params ...any) error {
@@ -70,11 +69,15 @@ func requestJobCtx(ctx context.Context, id uuid.UUID, ch chan jobOutRequest) *in
 
 func removeSliceDuplicatesInt(in []int) []int {
 	m := make(map[int]struct{})
+	var res []int
 
 	for _, i := range in {
+		if _, ok := m[i]; !ok {
+			res = append(res, i)
+		}
 		m[i] = struct{}{}
 	}
-	return maps.Keys(m)
+	return res
 }
 
 func convertAtTimesToDateTime(atTimes AtTimes, location *time.Location) ([]time.Time, error) {
